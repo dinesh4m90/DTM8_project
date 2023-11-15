@@ -492,6 +492,8 @@ if st.button("Collect and Store data"):
         else:
             output = channel_details(channel)
             st.success(output)
+
+#Migrate mongodb data to Mysql
             
 if st.button("Migrate to SQL"):
     display = tables()
@@ -512,6 +514,7 @@ mydb = mysql.connector.connect(host='localhost', user='dinesh4m90', password='Di
                                      port='3306', database='Youtube_data')
 cursor = mydb.cursor()
 
+#10 questions on project
 
 question = st.selectbox(
     'Please Select Your Question',
