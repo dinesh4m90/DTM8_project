@@ -140,7 +140,7 @@ def get_comment_info(video_ids):
         return Comment_Information
 
 
-
+#connect to mongodbClient 
 
 client = pymongo.MongoClient("mongodb+srv://dinesh4m90:G7EyJZaLRWNDcXbT@cluster0.u1alk3m.mongodb.net/?retryWrites=true&w=majority")
 db = client["Youtube_data"]
