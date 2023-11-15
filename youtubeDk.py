@@ -145,6 +145,8 @@ def get_comment_info(video_ids):
 client = pymongo.MongoClient("mongodb+srv://dinesh4m90:G7EyJZaLRWNDcXbT@cluster0.u1alk3m.mongodb.net/?retryWrites=true&w=majority")
 db = client["Youtube_data"]
 
+#Insert channel detail in mongodb
+
 def channel_details(channel_id):
     ch_details = get_channel_info(channel_id)
     pl_details = get_playlist_info(channel_id)
@@ -159,15 +161,7 @@ def channel_details(channel_id):
     return 'upload completed successfully'
 
 
-# if sys._shutdown:
-#     print("The interpreter is already shutting down.")
-#     sys.exit()
-
-# # Create a new thread.
-# thread = threading.Thread(target=my_function)
-# thread.start()
-
-# # insert=channel_details('UCMuAUiKC29C5qM6_ZTY9Xww')
+#Create channels table in mysql and insert value from mongodb
 
 def channels_table():
     mydb = mysql.connector.connect(host='localhost', user='dinesh4m90', password='Dinesh4Mysql@1990',
@@ -229,6 +223,8 @@ def channels_table():
         
         st.write("Channels values are already inserted")
 
+#Create playlists table in mysql and insert value from mongodb
+
 def playlists_table():
     mydb = mysql.connector.connect(host='localhost', user='dinesh4m90', password='Dinesh4Mysql@1990',
                                      port='3306', database='Youtube_data')
@@ -282,6 +278,8 @@ def playlists_table():
             mydb.commit()    
         except:
             st.write("Playlists values are already inserted")
+
+#Create videos table in mysql and insert value from mongodb
 
 def videos_table():
 
@@ -366,6 +364,8 @@ def videos_table():
             mydb.commit()
         except:
             st.write("videos values already inserted in the table")
+            
+#Create comments table in mysql and insert value from mongodb
 
 def comments_table():
     mydb = mysql.connector.connect(host='localhost', user='dinesh4m90', password='Dinesh4Mysql@1990',
