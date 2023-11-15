@@ -28,10 +28,7 @@ def get_channel_info(channel_id):
               Description = i['snippet']['description'],
               Playlist_id = i['contentDetails']['relatedPlaylists']['uploads'])
     return data
-#check
-# channel_Detls=get_chnl_info('UCuI5XcJYynHa5k_lqDzAgwQ')
 
-# print(channel_Detls)
 # Get playlist details
 def get_playlist_info(channel_id):
     All_data = []
@@ -60,10 +57,8 @@ def get_playlist_info(channel_id):
             next_page=False
     return All_data
 
-# x = get_playlist_info('UCuI5XcJYynHa5k_lqDzAgwQ')
 
-# print(x)
-
+# Get channel details
 def get_channel_videos(channel_id):
     vid_ids = []
     response = youtube.channels().list(id=channel_id, 
@@ -85,12 +80,7 @@ def get_channel_videos(channel_id):
             break
     return vid_ids
 
-#check
-# video_Detls= get_channel_videos('UCz4iTnctd-NyR8snxOT1Psg')
-# print(len(video_Detls))
-
-
-# print(video_Detls)
+# Get video details
 
 def get_video_info(video_Ids):
 
@@ -121,11 +111,8 @@ def get_video_info(video_Ids):
                         )
             video_data.append(data)
     return video_data
-# #check
-# vid_Detls = get_video_info(video_Detls)
-# for i in vid_Detls:
-#     print(vid_Detls)
 
+# Get comment details
 def get_comment_info(video_ids):
         Comment_Information = []
         try:
@@ -152,9 +139,7 @@ def get_comment_info(video_ids):
                 
         return Comment_Information
 
-# commt_Detls= get_comment_info(video_Detls)
-# for i in commt_Detls:
-#     print(commt_Detls)
+
 
 
 client = pymongo.MongoClient("mongodb+srv://dinesh4m90:G7EyJZaLRWNDcXbT@cluster0.u1alk3m.mongodb.net/?retryWrites=true&w=majority")
