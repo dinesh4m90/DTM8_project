@@ -420,6 +420,8 @@ def comments_table():
                 mydb.commit()
             except:
                st.write("This comments are already exist in comments table")
+                
+#create function tables() to call all function from above.
 
 def tables():
     channels_table()
@@ -428,6 +430,7 @@ def tables():
     comments_table()
     return "Tables Created successfully"
 
+#Show channels_table which call from streamlit
     
 def show_channels_table():
     ch_list = []
@@ -437,6 +440,7 @@ def show_channels_table():
         ch_list.append(ch_data["channel_information"])
     channels_table = st.dataframe(ch_list)
     return channels_table
+#Show playlists_table which call from streamlit    
 
 def show_playlists_table():
     db = client["Youtube_data"]
@@ -447,6 +451,8 @@ def show_playlists_table():
                 pl_list.append(pl_data["playlist_information"][i])
     playlists_table = st.dataframe(pl_list)
     return playlists_table
+    
+#Show videos_table which call from streamlit
 
 def show_videos_table():
     vi_list = []
@@ -457,6 +463,7 @@ def show_videos_table():
             vi_list.append(vi_data["video_information"][i])
     videos_table = st.dataframe(vi_list)
     return videos_table
+#Show comments_table which call from streamlit
 
 def show_comments_table():
     com_list = []
@@ -467,7 +474,7 @@ def show_comments_table():
             com_list.append(com_data["comment_information"][i])
     comments_table = st.dataframe(com_list)
     return comments_table
-
+#Streamlit code for give channel id to insert channel into mongodb
     
 channel_id = st.text_input("Enter the Channel id")
 channels = channel_id.split(',')
