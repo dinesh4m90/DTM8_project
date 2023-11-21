@@ -598,7 +598,12 @@ elif question == '9. average duration of all videos in each channel':
     for index, row in t9.iterrows():
         channel_title = row['ChannelTitle']
         average_duration = row['Average Duration']
-        average_duration_str = str(average_duration)
+        number = average_duration
+        hours = int(number // 10000) 
+        minutes = int((number % 10000) // 100)  
+        seconds = int(number % 100) 
+        formatted_time = "{:02d}:{:02d}:{:02d}".format(hours, minutes, seconds)
+        average_duration_str = str(formatted_time)
         T9.append({"Channel Title": channel_title ,  "Average Duration": average_duration_str})
     st.write(pd.DataFrame(T9))
 
