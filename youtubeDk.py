@@ -287,17 +287,16 @@ def videos_table():
                                      port='3306', database='Youtube_data')
     cursor = mydb.cursor()
 
-    drop_query = "drop table if exists videos"
-    cursor.execute(drop_query)
+    # drop_query = "drop table if exists videos"
+    # cursor.execute(drop_query)
     mydb.commit()
-
 
     try:
         create_query = '''create table if not exists videos(Channel_Name varchar(150),
                         Channel_Id varchar(100),Video_Id varchar(50) primary key, 
                         Title varchar(150), Tags text,
                         Thumbnail varchar(225),Description text, 
-                        Published_Date timestamp,Duration time, 
+                        Published_Date datetime,Duration time, 
                         Views bigint, Likes bigint,
                         Comments int,Favorite_Count int, 
                         Definition varchar(10), Caption_Status varchar(50) 
@@ -315,12 +314,11 @@ def videos_table():
         for i in range(len(vi_data["video_information"])):
             vi_list.append(vi_data["video_information"][i])
         df2 = pd.DataFrame(vi_list)
-        df2['Published_Date']=pd.to_datetime(df2['Published_Date'])
+        df2['Tags'] = df2['Tags'].str.get(0)
+        df2['Published_Date'] = pd.to_datetime(df2['Published_Date']).dt.strftime('%Y-%m-%d %H:%M:%S')
+        
         df2['Duration'] = df2['Duration'].str.replace('[^0-9]+', '', regex=True)
 
-        # print(df2)
-        
-    
     for index, row in df2.iterrows():
         insert_query = '''
                     INSERT INTO videos (Channel_Name,
@@ -358,6 +356,7 @@ def videos_table():
                     row['Favorite_Count'],
                     row['Definition'],
                     row['Caption_Status'])
+        print(values)
                                 
         try:    
             cursor.execute(insert_query,values)
